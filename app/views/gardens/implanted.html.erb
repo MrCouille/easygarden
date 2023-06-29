@@ -27,7 +27,7 @@
     <% end %>
 
     <div class="text-center btnContainer">
-      <%= button_to "Regénérer", implant_path(@garden, array_of_veggie: params[:array_of_veggie]), method: :post, class: "myButton" %>
+      <%= button_to "Regénérer", implant_garden_path(@garden, array_of_veggie: params[:array_of_veggie]), method: :post, class: "myButton" %>
       <%= button_to "Valider", validate_garden_path(@garden), method: :post, params: {implantation: @implantation, counter: params["counter"]}, class: "myButton" %>
     </div>
   </div>
