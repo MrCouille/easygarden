@@ -4,7 +4,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["comp", "field", "nextButton", "addButton", "removeButton"]
   static values = {compartmentsCount: Number}
-
+  
   connect() {
     this.counter = 0
     this.vegetable_ids = []

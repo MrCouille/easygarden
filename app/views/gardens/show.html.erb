@@ -24,63 +24,58 @@
     <% end %>
   </div>
 
+  <% total_price = 0 %>
 
   <h3 class="text-center mt-4"><strong>Ma liste de courses</strong></h3>
 
-    <div class="row mx-3 single-line">
-      <div class="col text-center">
-        <strongs class="single-line">Symbole</strong>
-      </div>
-      <div class="col text-center">
-         <strongs class="single-line">Nom</strong>
-      </div>
-      <div class="col text-center">
-         <strongs class="single-line">Quantité</strong>
-      </div>
-      <div class="col text-center">
-         <strongs class="single-line">Prix unitaire(€)</strong>
-      </div>
-      <div class="col text-center">
-         <strongs class="single-line">Prix total(€)</strong>
-      </div>
-    </div>
+  <table class="col text-center">
+    <tr>
+      <th>
+        Symbole
+      </th>
+      <th>
+        Nom
+      </th>
+      <th>
+        Quantité
+      </th>
+      <th>
+        Prix Unitaire
+      </th>
+      <th>
+        Prix Total
+      </th>
 
-  <% total_price = 0 %>
-
-<% @quantity_hash.each do |vegetable_name, data| %>
-  <% quantity = data[:quantity] %>
-  <% unitary_price = data[:unitary_price] %>
-  <% vegetable = Vegetable.find_by(name: vegetable_name) %>
-  <% vegetable_price = unitary_price * quantity %>
-  <% total_price += vegetable_price %>
-
-  <div class="row mx-3 garden-item border border-success p-3 mb-1 rounded" style="background-color: rgba(90, 198, 152, 0.1);">
-    <div class="col text-center">
-      <img src="<%= image_path("#{vegetable.name}.svg") %>" width="25" height="25" alt="<%= vegetable.name %>">
-    </div>
-    <div class="col text-center">
-      <strong><%= link_to vegetable.name, vegetable_path(vegetable) %></strong>
-    </div>
-    <div class="col text-center">
-      <span><strong><%= quantity %></strong></span>
-    </div>
-    <div class="col text-center">
-      <span><strong><%= unitary_price %></strong></span>
-    </div>
-    <div class="col text-center">
-      <span><strong><%= vegetable_price.truncate(2) %>€</strong></span>
-    </div>
-  </div>
-<% end %>
-
-<div class="row mx-3 garden-item border border-success p-3 mb-1 rounded" style="background-color: rgba(90, 198, 152, 0.1);">
-  <div class="col text-center">
-    <strong>Total</strong>
-  </div>
-  <div class="col"></div>
-  <div class="col"></div>
-  <div class="col"></div>
-  <div class="col text-center">
-    <strong><%= total_price.truncate(2) %>€</strong>
-  </div>
+  <% @quantity_hash.each do |vegetable_name, data| %>
+    <% quantity = data[:quantity] %>
+    <% unitary_price = data[:unitary_price] %>
+    <% vegetable = Vegetable.find_by(name: vegetable_name) %>
+    <% vegetable_price = unitary_price * quantity %>
+    <% total_price += vegetable_price %>
+    <tr>
+      <td style="border-left: 1px solid green">
+        <img  src="<%= image_path("#{vegetable.name}.svg") %>"
+              width="25"
+              height="25"
+              alt="<%= vegetable.name %>">
+      </td>
+      <td>
+        <%= link_to vegetable.name, vegetable_path(vegetable) %>
+      </td>
+      <td>
+        <%= quantity %>
+      </td>
+      <td>
+        <%= unitary_price %>
+      </td>
+      <td style="border-right: 1px solid green">
+        <%= vegetable_price %>
+      </td>
+    </tr>
+  <% end %>
+    <tr>
+      <td style="border-left: 1px solid green" colspan="4" class="col text-end"><strong><u>Total :</u></strong></td>
+      <td style="border-right: 1px solid green"><strong><%=  total_price.round(2)%> €</strong></td>
+    </tr>
+  </table>
 </div>

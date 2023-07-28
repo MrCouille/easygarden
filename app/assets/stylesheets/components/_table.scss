@@ -1,0 +1,19 @@
+table {
+  width: 100%;
+  font-weight: bold;
+  border-collapse: separate;
+  border-spacing: 0 4px;
+}
+
+th {
+  font-weight: bolder;
+  color: white;
+  background-color: green;
+}
+
+td {
+  border-top: 1px solid green;
+  border-bottom: 1px solid green;
+  background-color: rgba(90, 198, 152, 0.1);
+  padding: 4px 0px 4px 0px;
+}
